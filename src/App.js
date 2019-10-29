@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './download.jpeg';
 import './App.css';
-
+import {Route} from 'react-router-dom'
+import Signup from './components/Signup'
+import Login from './components/Login'
+import HomePage from './components/HomePage'
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          WELCOME TO LUDO
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Route component={HomePage} exact path='/' />
+        <Route component={Signup} exact path='/signup' />
+        <Route component={Login}exact path='/login' />
+
       </header>
+     
     </div>
   );
 }
