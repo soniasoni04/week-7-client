@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import HomePage from './components/HomePage'
+import Lobby from './components/Lobby'
 function App() {
   return (
     <div className="App">
@@ -14,10 +15,14 @@ function App() {
           WELCOME TO LUDO
         </p>
         <Route component={HomePage} exact path='/' />
+        <Route component={Lobby} exact path='/lobby' />
         <Route component={Signup} exact path='/signup' />
         <Route component={Login}exact path='/login' />
 
       </header>
+      <footer>
+        <p>Made By <b>Lil Nick</b> and <b>Sonia</b></p>
+      </footer>
      
     </div>
   );
