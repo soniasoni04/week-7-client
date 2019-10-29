@@ -4,6 +4,7 @@ import './App.css';
 import {Route} from 'react-router-dom'
 import Signup from './components/Signup'
 import Login from './components/Login'
+import HomePage from './components/HomePage'
 function App() {
   return (
     <div className="App">
@@ -12,7 +13,8 @@ function App() {
         <p>
           WELCOME TO LUDO
         </p>
-        <Signup />
+        <Route component={HomePage} exact path='/' />
+        <Route component={Signup} exact path='/signup' />
         <Route component={Login}exact path='/login' />
 
       </header>
