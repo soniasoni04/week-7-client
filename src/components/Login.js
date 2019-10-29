@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import * as request from 'superagent'
+import {login} from '../actions/login'
 import { url } from '../constants'
 
 
-import {login} from '../action'
+
 
 class Login extends Component {
     state = {
@@ -25,6 +26,7 @@ class Login extends Component {
         console.log('username:', 
         this.state.username, 'password:', 
         this.state.password);
+        
         request.post(`${url}/login`)
         .send({
             email: this.state.username,
@@ -41,7 +43,8 @@ class Login extends Component {
     render() {
         console.log("login done", this.props)
 
-         if(this.props.jwt != "") return "user is logged in:"
+         if (this.props.jwt) return "user is logged in:"
+
         return (
             <form onSubmit={this.onSubmit}>
             <input name="username" 
@@ -49,9 +52,11 @@ class Login extends Component {
             onChange={this.onChangeUsername} 
             value={this.state.username}
              placeholder="login username"></input>
+            
             <input name="password" 
             type="password" 
             onChange={this.onChangePassword}
+            value={this.state.password}
             placeholder="Password here"></input>
         <button 
         type="submit" 
@@ -65,7 +70,6 @@ class Login extends Component {
         
     }
 }
-
 
 
 function mapStateToProps ( reduxState) {

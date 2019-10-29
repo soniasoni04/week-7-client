@@ -1,4 +1,4 @@
-import {USER_LOGIN} from '../action'
+import {USER_LOGIN} from '../actions/login'
 
 
 export default function (state = [], action = {}) {

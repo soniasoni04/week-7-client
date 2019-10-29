@@ -13,6 +13,7 @@ export default class Signup extends Component {
         console.log('change username');
         this.setState({username: event.target.value})
     }
+   
     onChangePassword = (event) => {
         console.log('change password');
         this.setState({password: event.target.value})
@@ -38,9 +39,11 @@ export default class Signup extends Component {
             onChange={this.onChangeUsername} 
             value={this.state.username}
              placeholder="Type your username here"></input>
+            
             <input name="password" 
             type="password" 
             onChange={this.onChangePassword}
+            value={this.state.password}
             placeholder="Type your password here"></input>
         <button 
         type="submit" 
