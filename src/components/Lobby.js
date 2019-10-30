@@ -6,7 +6,7 @@ import Game from './Game';
 // import './lobby.css';
 
 const Lobby = (props) => {
-	console.log('lobby', props.games);
+	// console.log('lobby', props.games);
 
 	const { games } = props;
 	const lobbyList =
@@ -18,6 +18,7 @@ const Lobby = (props) => {
 	return (
 		<div>
 			<LobbyForm />
+			
 			<div className="gameList">{lobbyList}</div>
 		</div>
 	);
@@ -26,7 +27,7 @@ const Lobby = (props) => {
 function mapStateToProps(state) {
 	return {
 		games: state.games,
-		jwt: state.user.jwt
+		jwt: state.game
 	};
 }
 
