@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as request from 'superagent'
-import {login} from '../actions/login'
+import {login} from '../actions/index'
 import { url } from '../constants'
+
 
 
 
@@ -35,7 +36,7 @@ class Login extends Component {
         .then(result => {
             console.log('please let it be token', result.body)
             this.props.login(result.body.jwt)
-        
+            
         })
         .catch(error => console.log("error", error))
         
@@ -43,7 +44,7 @@ class Login extends Component {
     render() {
         console.log("login done", this.props)
 
-         if (this.props.jwt) return "user is logged in:"
+         if (this.props.jwt) return "you are  is logged in:"
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -62,6 +63,7 @@ class Login extends Component {
         type="submit" 
         value={this.state.message}>
             Login</button>
+            <p> <Link to="/lobby">Game Lobby</Link> </p>
         </form>
 
 

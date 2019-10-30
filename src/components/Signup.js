@@ -27,6 +27,13 @@ export default class Signup extends Component {
         .send({
             email: this.state.username,
             password: this.state.password
+        
+        })
+        .then(res =>{
+             console.log('res', res)
+             if (res.body.message === "user created sucessfully") {
+                 this.props.history.push("/login")
+             }
         })
         .catch(error => console.log('error', error))
         

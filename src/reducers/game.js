@@ -1,4 +1,4 @@
-import { CREATE_GAME } from '../actions/login';
+import { CREATE_GAME } from '../actions/index';
 
 export default function game(state = [], action = {}) {
 	switch (action.type) {
