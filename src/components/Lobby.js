@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import LobbyForm from './LobbyForm';
 import Game from './Game';
+import Player from './Player';
+import LobbyId from './LobbyId'
 // import './lobby.css';
 
 const Lobby = (props) => {
@@ -18,6 +20,8 @@ const Lobby = (props) => {
 	return (
 		<div>
 			<LobbyForm />
+			<Player />
+			<LobbyId />
 			
 			<div className="gameList">{lobbyList}</div>
 		</div>

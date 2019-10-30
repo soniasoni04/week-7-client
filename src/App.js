@@ -6,6 +6,7 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import HomePage from './components/HomePage'
 import Lobby from './components/Lobby'
+
 function App() {
   return (
     <div className="App">
