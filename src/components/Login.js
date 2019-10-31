@@ -38,7 +38,6 @@ class Login extends Component {
                 console.log('this.props.history test:', this.props.history)
                 console.log('jwt test:', result.body.jwt)
                 this.props.login(result.body.jwt, this.props.history)
-                
             })
             .catch(error => console.log("error", error))
         
@@ -67,7 +66,7 @@ class Login extends Component {
         type="submit" 
         value={this.state.message}>
             Login</button>
-            <p> <Link to="/lobby">Game Lobby</Link> </p>
+            <button onClick={() => this.props.history.push('/')}>Go Back</button>
         </form>
 
 
