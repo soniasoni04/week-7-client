@@ -15,7 +15,7 @@ class Lobby extends React.Component {
 
 		return (
 			<div>
-				<LobbyForm />
+			<LobbyForm />
 				
 				<div className="gameList">{lobbyList}</div>
 			</div>
