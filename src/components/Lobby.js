@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getLobby } from '../actions'
+
 
 import LobbyForm from './LobbyForm';
 import Game from './Game';
@@ -7,34 +9,35 @@ import Player from './Player';
 import LobbyId from './LobbyId'
 // import './lobby.css';
 
-const Lobby = (props) => {
-	// console.log('lobby', props.games);
+class Lobby extends React.Component {
+	componentDidMount() {
+        this.props.getLobby()
+    }
 
-	const { games } = props;
-	const lobbyList =
-		games &&
-		games.map((game, index) => {
-			return <Game name={game.name} key={game.id} gameId={game.id} jwt={props.jwt} index={index}/>;
+	render () {
+		const { lobbies, jwt } = this.props;
+		console.log('lobbies test:', lobbies)
+		const lobbyList = lobbies.map((game, index) => {
+			return <Game name={game.name} key={game.id} gameId={game.id} jwt={jwt} index={index}/>;
 		});
 
-	return (
-		<div>
-			<LobbyForm />
-			<Player />
-			<LobbyId />
-			
-			<div className="gameList">{lobbyList}</div>
-		</div>
-	);
-};
+		return (
+			<div>
+				<LobbyForm />
+				
+				<div className="gameList">{lobbyList}</div>
+			</div>
+		);
+	}
+}
 
 function mapStateToProps(state) {
 	return {
-		games: state.games,
+		lobbies: state.lobbies,
 		jwt: state.game
 	};
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getLobby };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Lobby);

@@ -1,6 +1,34 @@
 import { url } from '../constants';
 import request from 'superagent';
+export const ALL_LOBBIES = 'ALL_LOBBIES'
 
+const baseUrl = 'http://localhost:4000'
+
+function allLobbyRooms(payload) {
+  return {
+    type: ALL_LOBBIES,
+    payload
+  }
+}
+
+export const getLobby = () => (dispatch, getState) => {
+  console.log("getState: ", getState())
+  const state = getState()
+  console.log("state: ", state)
+
+  // const { images } = state
+
+  if (!getState().length) {
+    request.get(`${baseUrl}/lobby`)
+      .then(response => {
+        console.log("response-body", response.body)
+        const action = allLobbyRooms(response.body)
+
+        dispatch(action)
+      })
+      .catch(console.error)
+  }
+}
 
 
 
