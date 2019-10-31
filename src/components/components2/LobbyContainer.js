@@ -19,7 +19,7 @@ class LobbyContainer extends Component {
     }
     render() {
         //console.log("lobby details : ", this.props.lobby)
-        //const {lobby} = this.props
+        // const {lobby} = this.props
         //console.log("lobby:", lobby)
         return (
             <div>

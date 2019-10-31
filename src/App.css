@@ -5,3 +5,19 @@ body{
 
 }
 
+.App-logo {
+ height: 40vmin;
+}
+.App-header {
+ background-color: rgb(92, 205, 135);
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ font-size: calc(12px + 2vmin);
+ color: black;
+}
+.App-link {
+ color: #09d3ac;
+}

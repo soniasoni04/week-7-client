@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './images.jpeg';
+import logo from './giphy.gif';
 import './App.css';
 import {Route} from 'react-router-dom'
 import { connect } from 'react-redux'
