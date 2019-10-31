@@ -5,13 +5,13 @@ import request from 'superagent';
 import { connect } from 'react-redux';
 
 const Game = (props) => {
-	const { name, gameId, jwt, index } = props;
-	// console.log('users:', props.games[index].Users);
+	const { lobbyName, id, jwt, Users } = props.game;
 
 	const addUserToGame = () => {
-    console.log('user has been added')
+		console.log('user has been added')
+		
 		request
-			.put(`${url}/join/${gameId}`)
+			.put(`${url}/join/${id}`)
 			.set('Authorization', `Bearer ${jwt}`)
 			.then((res) => console.log(res))
 			.catch(console.error);
@@ -21,12 +21,13 @@ const Game = (props) => {
 		if (!props.jwt) {
 			return <p>login to join</p>;
 		}
-		if (props.lobbies[index].Users.length >= 2) {
+
+		if (Users.length >= 2) {
 			return 'full';
 		} else {
 			return (
-				<Link to={`/game/${gameId}`}>
-					<button onClick={addUserToGame}>join</button>
+				<Link to={`/game/${id}`}>
+					{lobbyName}
 				</Link>
 			);
 		}
@@ -34,14 +35,11 @@ const Game = (props) => {
 
 	return (
 		<div className="game">
-			<h2>{name}</h2>
+			<h2>{lobbyName}</h2>
+
 			{renderButton()}
-			{props.lobbies[index].Users ? (
-				<p>
-					players: <b>{props.lobbies[index].Users.length}</b>
-				</p>
-			) : (''
-			)}
+
+			{Users && <p> players: <b>{Users.length}</b></p>}
 		</div>
 	);
 };
