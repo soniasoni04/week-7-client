@@ -6,6 +6,11 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import HomePage from './components/HomePage'
 import Lobby from './components/Lobby'
+import LobbyContainer from './components/components2/LobbyContainer';
+import StartGame from './components/components2/StartGame'
+
+
+
 function App() {
   return (
     <div className="App">
@@ -17,7 +22,9 @@ function App() {
         <Route component={HomePage} exact path='/' />
         <Route component={Lobby} exact path='/lobby' />
         <Route component={Signup} exact path='/signup' />
-        <Route component={Login}exact path='/login' />
+        <Route component={Login} exact path='/login' />
+        <Route component={LobbyContainer} exact path='/lobby' />
+        <Route component={StartGame} exact path='/startGame' />
 
       </header>
     

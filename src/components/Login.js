@@ -81,6 +81,4 @@ function mapStateToProps ( reduxState) {
     }
 }
 
-
-
 export default  connect(mapStateToProps, {login}) (Login)
