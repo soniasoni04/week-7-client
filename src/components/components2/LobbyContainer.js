@@ -1,23 +1,23 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import { getLobby } from './action'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 
-class LobbyContainer extends Component{
-    state= {
-        lobby : []
+class LobbyContainer extends Component {
+    state = {
+        lobby: []
     }
-    componentDidMount(){
+    componentDidMount() {
         this.props.getLobby()
     }
-    onClick=(e)=>{
+    onClick = (e) => {
         console.log("lobby details : ", this.props.lobby)
         console.log("hello from onclick")
         this.setState({
-            lobby : this.props.lobby
+            lobby: this.props.lobby
         })
     }
-    render(){
+    render() {
         //console.log("lobby details : ", this.props.lobby)
         //const {lobby} = this.props
         //console.log("lobby:", lobby)
@@ -27,26 +27,26 @@ class LobbyContainer extends Component{
                 <button onClick={this.onClick}> Find the status of Lobby</button>
                 {
                     this.state.lobby.map(lobby => {
-                        return (<div> 
-                                    <h2>Lobby Id : {lobby.id} </h2>
-                                    <p>Lobby Name : {lobby.lobbyName}</p>
-                                    <p> Name of Player 01 : {lobby.player1}</p>
-                                    <p> Name of player 02 : {lobby.player2}</p>
-                                    <p> status of the Lobby : <b> {lobby.status}</b></p>
-                                
-                                </div>)
+                        return (<div>
+                            <h2>Lobby Id : {lobby.id} </h2>
+                            <p>Lobby Name : {lobby.lobbyName}</p>
+                            <p> Name of Player 01 : {lobby.player1}</p>
+                            <p> Name of player 02 : {lobby.player2}</p>
+                            <p> status of the Lobby : <b> {lobby.status}</b></p>
+
+                        </div>)
                     })
                 }
-                
+
             </div>
         )
     }
 
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
     return {
-        lobby : state.fetchLobby
+        lobby: state.fetchLobby
     }
 }
-export default connect(mapStateToProps, {getLobby})(LobbyContainer)
+export default connect(mapStateToProps, { getLobby })(LobbyContainer)

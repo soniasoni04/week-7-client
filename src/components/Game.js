@@ -21,7 +21,7 @@ const Game = (props) => {
 		if (!props.jwt) {
 			return <p>login to join</p>;
 		}
-		if (props.games[index].Users.length >= 2) {
+		if (props.lobbies[index].Users.length >= 2) {
 			return 'full';
 		} else {
 			return (
@@ -36,9 +36,9 @@ const Game = (props) => {
 		<div className="game">
 			<h2>{name}</h2>
 			{renderButton()}
-			{props.games[index].Users ? (
+			{props.lobbies[index].Users ? (
 				<p>
-					players: <b>{props.games[index].Users.length}</b>
+					players: <b>{props.lobbies[index].Users.length}</b>
 				</p>
 			) : (''
 			)}
@@ -49,7 +49,7 @@ const Game = (props) => {
 const mapStateToProps = (state) => {
 	return {
 		jwt: state.user.jwt,
-		games: state.games
+		lobbies: state.lobbies
 	};
 };
 
