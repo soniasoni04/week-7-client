@@ -35,20 +35,23 @@ export const getLobby = () => (dispatch, getState) => {
 export const USER_LOGIN = 'USER_LOGIN'
 export const CREATE_GAME = 'CREATE_GAME'
 export const CREATE_LOBBY = 'CREATE_GAME'
+export const CREATE_PLAYER= 'CREATE_PLAYER'
+export const CREATE_LOBBYID='CREATE_LOBBYID'
 
 
-
+//login action
 export const login = (payload) => ({
     type: USER_LOGIN,
     payload
 })
 
-
+//game action
 export const game = (payload) =>({
     type: CREATE_GAME,
     payload
 })
 
+//lobby action
 export const lobbyCreateSuccess = (payload) =>({
     type: CREATE_LOBBY,
     payload
@@ -64,3 +67,43 @@ export const createLobby = data => (dispatch, getState) => {
       })
       .catch(console.error);
    };
+
+
+   // player action 
+   const playerCreateSuccess = player => ({
+    type: CREATE_PLAYER,
+    payload: player
+  });
+  
+  export const createPlayer = data => (dispatch, getState) => {
+  
+  
+    request
+      .put(`${url}/lobby/2`)
+      .send(data)
+      .then(response => {
+        console.log('RESPONSE', response.body)
+        dispatch(playerCreateSuccess(response.body));
+      })
+      .catch(console.error);
+  };
+
+
+  //lobbyId ACtion 
+  const lobbyIdCreateSuccess = player => ({
+    type: CREATE_LOBBYID,
+    payload: player
+  });
+  
+  export const createLobbyId = data => (dispatch, getState) => {
+    const token = getState().auth;
+  
+    request
+      .put(`${url}/lobby/:Id`)
+      .set("Authorization", `Bearer ${token}`)
+      .send(data)
+      .then(response => {
+        dispatch(lobbyIdCreateSuccess(response.body));
+      })
+      .catch(console.error);
+  };
