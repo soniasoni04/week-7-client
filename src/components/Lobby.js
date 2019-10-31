@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getLobby } from '../actions'
-
 
 import LobbyForm from './LobbyForm';
 import Game from './Game';
@@ -10,16 +8,10 @@ import LobbyId from './LobbyId'
 // import './lobby.css';
 
 class Lobby extends React.Component {
-	componentDidMount() {
-        this.props.getLobby()
-    }
-
 	render () {
 		const { lobbies, jwt } = this.props;
 		console.log('lobbies test:', lobbies)
-		const lobbyList = lobbies.map((game, index) => {
-			return <Game name={game.name} key={game.id} gameId={game.id} jwt={jwt} index={index}/>;
-		});
+		const lobbyList = lobbies.map(game => <Game game={game} key={game.id} />)
 
 		return (
 			<div>
@@ -38,6 +30,4 @@ function mapStateToProps(state) {
 	};
 }
 
-const mapDispatchToProps = { getLobby };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Lobby);
+export default connect(mapStateToProps)(Lobby);

@@ -29,22 +29,26 @@ class Login extends Component {
         this.state.password);
         
         request.post(`${url}/login`)
-        .send({
-            email: this.state.username,
-            password: this.state.password
-        })
-        .then(result => {
-            console.log('please let it be token', result.body)
-            this.props.login(result.body.jwt)
-            
-        })
-        .catch(error => console.log("error", error))
+            .send({
+                email: this.state.username,
+                password: this.state.password
+            })
+            .then(result => {
+                console.log('please let it be token', result.body)
+                console.log('this.props.history test:', this.props.history)
+                console.log('jwt test:', result.body.jwt)
+                this.props.login(result.body.jwt, this.props.history)
+                
+            })
+            .catch(error => console.log("error", error))
         
     }
     render() {
         console.log("login done", this.props)
 
-         if (this.props.jwt) return "you are  is logged in:"
+        const { jwt } = this.props.user
+
+        if (jwt) return "you are  is logged in:"
 
         return (
             <form onSubmit={this.onSubmit}>
@@ -77,7 +81,7 @@ class Login extends Component {
 function mapStateToProps ( reduxState) {
     console.log('map state to props of chatroom component', reduxState)
     return {
-        jwt: reduxState.user
+        user: reduxState.user
     }
 }
 

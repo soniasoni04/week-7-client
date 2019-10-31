@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import * as request from 'superagent'
 import { url } from '../constants'
 
-
-
 export default class Signup extends Component {
     state = {
         username: '',
@@ -24,18 +22,18 @@ export default class Signup extends Component {
         this.state.username, 'password:', 
         this.state.password);
         request.post(`${url}/user`)
-        .send({
-            email: this.state.username,
-            password: this.state.password
-        
-        })
-        .then(res =>{
-             console.log('res', res)
-             if (res.body.message === "user created sucessfully") {
-                 this.props.history.push("/login")
-             }
-        })
-        .catch(error => console.log('error', error))
+            .send({
+                email: this.state.username,
+                password: this.state.password
+            
+            })
+            .then(res => {
+                console.log('res', res)
+                if (res.ok) {
+                    this.props.history.push("/login")
+                }
+            })
+            .catch(error => console.log('error', error))
         
     }
     render() {

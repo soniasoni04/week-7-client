@@ -4,7 +4,7 @@ export const ALL_LOBBIES = 'ALL_LOBBIES'
 
 const baseUrl = 'http://localhost:4000'
 
-function allLobbyRooms(payload) {
+export function allLobbyRooms(payload) {
   return {
     type: ALL_LOBBIES,
     payload
@@ -40,10 +40,16 @@ export const CREATE_LOBBYID='CREATE_LOBBYID'
 
 
 //login action
-export const login = (payload) => ({
-    type: USER_LOGIN,
-    payload
-})
+export const login = (payload, history) => {
+    console.log('payload test:', payload)
+    console.log('history test:', history)
+    history.push('/lobby')
+
+    return {
+        type: USER_LOGIN,
+        payload
+    }
+}
 
 //game action
 export const game = (payload) =>({

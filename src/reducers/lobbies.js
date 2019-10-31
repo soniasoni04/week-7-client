@@ -5,8 +5,6 @@ export default function lobby(state = [], action = {}) {
 	switch (action.type) {
 		case ALL_LOBBIES:
 			return action.payload
-		case CREATE_LOBBY:
-			return [...state, action.payload]
 		default:
 			return state;
 	}

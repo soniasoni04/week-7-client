@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { USER_LOGIN, login } from '../actions/index'
-
 
 class HomePage extends Component {
-
-  componentDidMount(){
-    
-    this.props.login(null)
-  }
-
   render () {
     return (
       <div>
@@ -23,16 +15,4 @@ class HomePage extends Component {
   }
 }
 
-
-const mapDispatchToProps = {
-  USER_LOGIN,
-  login
-}
-
-const mapStateToProps = (state) => {
-  return {
-    login: state.login
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect()(HomePage);
