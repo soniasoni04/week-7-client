@@ -33,6 +33,7 @@ class LobbyContainer extends Component {
                             <p> Name of Player 01 : {lobby.player1}</p>
                             <p> Name of player 02 : {lobby.player2}</p>
                             <p> status of the Lobby : <b> {lobby.status}</b></p>
+                            <button onClick={() => this.props.history.push('/')}>Go Back</button>
 
                         </div>)
                     })

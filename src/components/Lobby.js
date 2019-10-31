@@ -18,6 +18,7 @@ class Lobby extends React.Component {
 				<LobbyForm />
 				
 				<div className="gameList">{lobbyList}</div>
+				<button onClick={() => this.props.history.push('/')}>Go Back</button>
 			</div>
 		);
 	}

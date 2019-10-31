@@ -69,6 +69,7 @@ class StartGame extends Component {
                     <div>
                         <button onClick={this.updateResult}> Show me result </button>
                         <h1>{this.state.result.message}</h1>
+                        <button onClick={() => this.props.history.push('/')}>Go Back</button>
                     </div>
             
             </div>
