@@ -8,8 +8,6 @@ import Login from './components/Login'
 import HomePage from './components/HomePage'
 import Lobby from './components/Lobby'
 import Gameplay from './components/Gameplay'
-
-import LobbyContainer from './components/components2/LobbyContainer';
 import StartGame from './components/components2/StartGame'
 
 import { url } from './constants'
@@ -41,7 +39,7 @@ class App extends React.Component {
           <Route component={Lobby} exact path='/lobby' />
           <Route component={Signup} exact path='/signup' />
           <Route component={Login} exact path='/login' />
-          <Route component={LobbyContainer} exact path='/lobby' />
+        
           <Route component={StartGame} exact path='/startGame' />
           <Route component={Gameplay} exact path='/game/:id' />
         </header>
