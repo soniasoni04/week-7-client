@@ -30,13 +30,12 @@ export const getLobby = () => (dispatch, getState) => {
   }
 }
 
-
-
 export const USER_LOGIN = 'USER_LOGIN'
 export const CREATE_GAME = 'CREATE_GAME'
-export const CREATE_LOBBY = 'CREATE_GAME'
-export const CREATE_PLAYER= 'CREATE_PLAYER'
+export const CREATE_LOBBY = 'CREATE_LOBBY'
 export const CREATE_LOBBYID='CREATE_LOBBYID'
+
+export const CREATE_PLAYER= 'CREATE_PLAYER'
 
 
 //login action
@@ -57,6 +56,9 @@ export const game = (payload) =>({
     payload
 })
 
+
+
+
 //lobby action
 export const lobbyCreateSuccess = (payload) =>({
     type: CREATE_LOBBY,
@@ -64,10 +66,12 @@ export const lobbyCreateSuccess = (payload) =>({
 })
 
 export const createLobby = data => (dispatch, getState) => {
-    // const token = getState().auth;
+     const state = getState(); //?????????/
+     console.log("state", state.user.jwt  )
     request
       .post(`${url}/lobby`)
       .send(data)
+      .set('authorization', `Bearer ${state.user.jwt}`)
       .then(response => {
         dispatch(lobbyCreateSuccess(response.body));
       })
@@ -96,20 +100,49 @@ export const createLobby = data => (dispatch, getState) => {
 
 
   //lobbyId ACtion 
-  const lobbyIdCreateSuccess = player => ({
+  const lobbyIdCreateSuccess = (id) => ({
     type: CREATE_LOBBYID,
-    payload: player
+    payload: id
   });
   
   export const createLobbyId = data => (dispatch, getState) => {
-    const token = getState().auth;
+    const state = getState()
+    const token = getState().user.jwt;
+    console.log("token", token)
+    console.log("data,  must be lobbyID :", data)
   
     request
-      .put(`${url}/lobby/:Id`)
-      .set("Authorization", `Bearer ${token}`)
-      .send(data)
+      .put(`${url}/lobby/${data.lobbyId}/join`)
+      .set('authorization', `Bearer ${state.user.jwt}`)   // set function 
+      .send(parseInt(data.lobbyId))
       .then(response => {
         dispatch(lobbyIdCreateSuccess(response.body));
+      })
+      .catch(console.error);
+  };
+
+
+  //Turn update action  in User table  
+
+  export const CREATE_TURN_UPDATE = 'CREATE_TURN_UPDATE'
+
+  const turnUpdate = (payload) => ({
+    type: CREATE_TURN_UPDATE,
+    payload: payload
+  });
+  
+  export const turnUpdateUser = (turn) => (dispatch, getState) => {
+    const state = getState()
+    const token = getState().user.jwt;
+    console.log("token", token)
+    console.log("TURN value :", turn)
+  
+    request
+      .put(`${url}/lobby/${turn}/start`)
+      .set('authorization', `Bearer ${state.user.jwt}`)   // set function 
+      .send(parseInt(turn))
+      .then(response => {
+        dispatch(turnUpdate(response.body));
       })
       .catch(console.error);
   };

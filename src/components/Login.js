@@ -6,9 +6,6 @@ import {login} from '../actions/index'
 import { url } from '../constants'
 
 
-
-
-
 class Login extends Component {
     state = {
         username: '',
@@ -24,20 +21,22 @@ class Login extends Component {
     }
     onSubmit = (event) => {
         event.preventDefault()
-        console.log('username:', 
-        this.state.username, 'password:', 
-        this.state.password);
+        console.log('username:', this.state.username, 'password:', this.state.password);
         
         request.post(`${url}/login`)
             .send({
                 email: this.state.username,
                 password: this.state.password
             })
-            .then(result => {
-                console.log('please let it be token', result.body)
-                console.log('this.props.history test:', this.props.history)
-                console.log('jwt test:', result.body.jwt)
-                this.props.login(result.body.jwt, this.props.history)
+
+            .then(response => {
+                console.log('please let it be token', response.body)
+                console.log('this.props.history test:', this.props.history)  //???????/
+                console.log('jwt test:', response.body.jwt)
+                this.props.login(response.body.jwt, this.props.history)   // see at the top included from action/index
+                
+
+
             })
             .catch(error => console.log("error", error))
         
@@ -47,26 +46,37 @@ class Login extends Component {
 
         const { jwt } = this.props.user
 
-        if (jwt) return "you are  is logged in:"
+        if (jwt) return "you are logged in:"
 
         return (
             <form onSubmit={this.onSubmit}>
             <input name="username" 
-            type="text" 
-            onChange={this.onChangeUsername} 
-            value={this.state.username}
-             placeholder="login username"></input>
+                type="text" 
+                onChange={this.onChangeUsername} 
+                value={this.state.username}
+                placeholder="login username">
+            </input>
             
             <input name="password" 
-            type="password" 
-            onChange={this.onChangePassword}
-            value={this.state.password}
-            placeholder="Password here"></input>
-        <button 
-        type="submit" 
-        value={this.state.message}>
+
+                type="password" 
+                onChange={this.onChangePassword}
+                value={this.state.password}
+                placeholder="Password here">
+            </input>
+            
+            <input
+                type="submit" 
+                value={this.state.message} />
+            
+        
+            <p> <Link to="/lobby">Game Lobby</Link> </p>
+
+            
+        
             Login</button>
             <div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
+
         </form>
 
 
@@ -80,7 +90,7 @@ class Login extends Component {
 function mapStateToProps ( reduxState) {
     console.log('map state to props of chatroom component', reduxState)
     return {
-        user: reduxState.user
+        user : reduxState.user // always store as ur jwt is stored in state.user
     }
 }
 
