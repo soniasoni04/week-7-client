@@ -66,7 +66,7 @@ class Login extends Component {
         type="submit" 
         value={this.state.message}>
             Login</button>
-            <button onClick={() => this.props.history.push('/')}>Go Back</button>
+            <div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
         </form>
 
 

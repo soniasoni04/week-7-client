@@ -20,7 +20,7 @@ class Lobby extends React.Component {
 	
 				
 				<div className="gameList">{lobbyList}</div>
-				<button onClick={() => this.props.history.push('/')}>Go Back</button>
+				<div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
 			</div>
 		);
 	}
