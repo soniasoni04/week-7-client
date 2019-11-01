@@ -5,17 +5,16 @@ import LobbyForm from './LobbyForm';
 
 import Game from './Game';
 
-import Player from './Player';
+//import Player from './Player';
 import LobbyId from './LobbyId'
 
 
 
 class Lobby extends React.Component {
-	render () 
+	render () {
 		const { lobbies, user } = this.props;
 
-		const { lobbies,  } = this.props;
-
+	
 		console.log('lobbies test:', lobbies)
 		const lobbyList = lobbies.map(game => <Game game={game} key={game.id} />)
 

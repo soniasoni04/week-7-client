@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
+ import { Link } from 'react-router-dom'
 import * as request from 'superagent'
 import {login} from '../actions/index'
 import { url } from '../constants'
@@ -74,7 +74,7 @@ class Login extends Component {
 
             
         
-            Login</button>
+          
             <div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
 
         </form>

@@ -35,7 +35,7 @@ export const CREATE_GAME = 'CREATE_GAME'
 export const CREATE_LOBBY = 'CREATE_LOBBY'
 export const CREATE_LOBBYID='CREATE_LOBBYID'
 
-export const CREATE_PLAYER= 'CREATE_PLAYER'
+// export const CREATE_PLAYER= 'CREATE_PLAYER'
 
 
 //login action
@@ -79,24 +79,24 @@ export const createLobby = data => (dispatch, getState) => {
    };
 
 
-   // player action 
-   const playerCreateSuccess = player => ({
-    type: CREATE_PLAYER,
-    payload: player
-  });
+  //  // player action 
+  //  const playerCreateSuccess = player => ({
+  //   type: CREATE_PLAYER,
+  //   payload: player
+  // });
   
-  export const createPlayer = data => (dispatch, getState) => {
+  // export const createPlayer = data => (dispatch, getState) => {
   
   
-    request
-      .put(`${url}/lobby/2`)
-      .send(data)
-      .then(response => {
-        console.log('RESPONSE', response.body)
-        dispatch(playerCreateSuccess(response.body));
-      })
-      .catch(console.error);
-  };
+  //   request
+  //     .put(`${url}/lobby/2`)
+  //     .send(data)
+  //     .then(response => {
+  //       console.log('RESPONSE', response.body)
+  //       dispatch(playerCreateSuccess(response.body));
+  //     })
+  //     .catch(console.error);
+  // };
 
 
   //lobbyId ACtion 
