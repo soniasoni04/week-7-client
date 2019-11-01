@@ -5,14 +5,19 @@ import LobbyForm from './LobbyForm';
 import Game from './Game';
 import Player from './Player';
 import LobbyId from './LobbyId'
+
 // import './lobby.css';
 
 class Lobby extends React.Component {
 	render () {
-		const { lobbies, jwt } = this.props;
+		const { lobbies, user } = this.props;
 		console.log('lobbies test:', lobbies)
 		const lobbyList = lobbies.map(game => <Game game={game} key={game.id} />)
 
+		console.log("render of lobby" ,this.props)
+		if(!this.props.user.jwt  && this.props.user)  {
+			this.props.history.push("/login")
+		}
 		return (
 			<div>
 			<LobbyForm />
@@ -24,9 +29,10 @@ class Lobby extends React.Component {
 }
 
 function mapStateToProps(state) {
+	console.log("mstp", state)
 	return {
 		lobbies: state.lobbies,
-		jwt: state.game
+		user: state.user  // having jwt
 	};
 }
 

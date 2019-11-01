@@ -1,16 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { createLobbyId } from '../actions/index'
-import LobbyIdForm from './LobbyIdForm'
+import {  } from '../actions/index'
+import LobbyUpdateForm from './LobbyUpdateForm'
 
 
-class LobbyId extends React.Component {
+class LobbyUpdate extends React.Component {
     state={
-        lobbyId:"",
+        turn : 0
     
     }
-    onChange = event => {
-        console.log("lobby id : ", event.target.value )
+    
+    onClick = event => {
+        console.log("clicked ", event.target.value )
         this.setState({
             lobbyId : event.target.value
         })
