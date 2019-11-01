@@ -54,7 +54,9 @@ export default class Signup extends Component {
         type="submit" 
         value={this.state.message}>
             Signup</button>
+            <div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
         </form>
+        
         );
     }
 }

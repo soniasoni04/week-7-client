@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import * as request from 'superagent'
 import {login} from '../actions/index'
 import { url } from '../constants'
@@ -28,12 +28,15 @@ class Login extends Component {
                 email: this.state.username,
                 password: this.state.password
             })
+
             .then(response => {
                 console.log('please let it be token', response.body)
                 console.log('this.props.history test:', this.props.history)  //???????/
                 console.log('jwt test:', response.body.jwt)
                 this.props.login(response.body.jwt, this.props.history)   // see at the top included from action/index
                 
+
+
             })
             .catch(error => console.log("error", error))
         
@@ -55,6 +58,7 @@ class Login extends Component {
             </input>
             
             <input name="password" 
+
                 type="password" 
                 onChange={this.onChangePassword}
                 value={this.state.password}
@@ -67,6 +71,12 @@ class Login extends Component {
             
         
             <p> <Link to="/lobby">Game Lobby</Link> </p>
+
+            
+        
+            Login</button>
+            <div><button onClick={() => this.props.history.push('/')}>Go Back</button></div>
+
         </form>
 
 

@@ -1,4 +1,4 @@
-import { ALL_LOBBIES, CREATE_LOBBY } from '../actions/index';
+import { ALL_LOBBIES,  } from '../actions/index';
 
 export default function lobby(state = [], action = {}) {
     console.log('REDUCER VALUE', state, action.payload)
